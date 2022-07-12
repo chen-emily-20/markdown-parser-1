@@ -13,17 +13,15 @@ public class MarkdownParseTest {
     public void addition() {
         assertEquals(2, 1 + 1);
     }
-
     
-    
-    // @Test
-    // public void testGetLinksTestFile4() throws IOException{
-    //     Path fileName = Path.of("/Users/emilychen/Documents/GitHub/markdown-parser-1/test-file4.md");
-    //     String content = Files.readString(fileName);
-    //     ArrayList<String> links = MarkdownParse.getLinks(content);
-    //     String[] expected = {};
-    //     assertArrayEquals(expected, links.toArray());
-    // }
+    @Test
+    public void testGetLinksTestFile4() throws IOException{
+        Path fileName = Path.of("/Users/emilychen/Documents/GitHub/markdown-parser-1/test-file4.md");
+        String content = Files.readString(fileName);
+        ArrayList<String> links = MarkdownParse.getLinks(content);
+        String[] expected = {};
+        assertArrayEquals(expected, links.toArray());
+    }
 
 }
 
