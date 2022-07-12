@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
+
 public class MarkdownParse {
 
     public static ArrayList<String> getLinks(String markdown) {
@@ -12,29 +13,12 @@ public class MarkdownParse {
         // find the next [, then find the ], then find the (, then read link upto next )
         int currentIndex = 0;
         while(currentIndex < markdown.length()) {
-            int openBracket = markdown.indexOf("[", currentIndex);
-            //edited this
-            currentIndex = openBracket;
-            
-            int closeBracket = markdown.indexOf("]", openBracket);
-            //edited this
-            currentIndex = closeBracket;            
-            
-            int openParen = markdown.indexOf("(", closeBracket);
-            //edited this
-            currentIndex = openParen;
-            
-            int closeParen = markdown.indexOf(")", openParen);
-            //edited this
-            currentIndex = closeParen;            
-            
+            int openBracket = markdown.indexOf("[", currentIndex);if (openBracket==-1){break;}
+            int closeBracket = markdown.indexOf("]", openBracket);if (closeBracket==-1){break;}
+            int openParen = markdown.indexOf("(", closeBracket);if (openParen==-1){break;}
+            int closeParen = markdown.indexOf(")", openParen);if (closeParen==-1){break;}
             toReturn.add(markdown.substring(openParen + 1, closeParen));
-            currentIndex += 1;
-
-            if ((markdown.indexOf("[", currentIndex) == -1) || (markdown.indexOf("]", currentIndex) == -1) ||
-            (markdown.indexOf("(", currentIndex) == -1) || (markdown.indexOf(")", currentIndex) == -1)){
-                break;
-            } //include if statement 
+            currentIndex = closeParen + 1;
         }
 
         return toReturn;

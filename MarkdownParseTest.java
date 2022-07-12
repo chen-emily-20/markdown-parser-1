@@ -49,7 +49,6 @@ public class MarkdownParseTest {
     public void testGetLinks3(){
         try{
             assertEquals(MarkdownParse.getLinks(Files.readString(Path.of("test-file3.md"))), List.of("more text here"));
-            System.out.println("true");
         }catch(Exception e){
             System.out.println("there's an error");
         } 
@@ -58,7 +57,7 @@ public class MarkdownParseTest {
     @Test
     public void testGetLinks4(){
         try{
-            assertEquals(MarkdownParse.getLinks(Files.readString(Path.of("test-file4.md"))), List.of("link.com"));
+            assertEquals(MarkdownParse.getLinks(Files.readString(Path.of("test-file4.md"))), List.of("("));
         }catch(Exception e){} 
     }
 
