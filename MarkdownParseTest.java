@@ -1,4 +1,6 @@
 import static org.junit.Assert.*;
+
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -14,20 +16,20 @@ public class MarkdownParseTest {
     }
     
     @Test
-    public void testGetLinksTestFile4() throws IOException{
+    public void testGetLinksTestFile() throws IOException{
         try {
-            
-            Path fileName = Path.of("test-file.md");
+            File testFile = new File("test-file.md");
+            String absolutePath = testFile.getAbsolutePath();
+            Path fileName = Path.of(absolutePath);
             String content = Files.readString(fileName);
             ArrayList<String> links = MarkdownParse.getLinks(content);
-            String[] expected = {};
+            String[] expected = {"https://something.com", "some-thing.html"};
             assertArrayEquals(expected, links.toArray());
+            
         } catch (IOException e) {
             System.out.println("File Not Found");
         }
-        }
-        
-    
+    }
 
     @Test
     public void testGetLinks1(){
@@ -56,7 +58,7 @@ public class MarkdownParseTest {
     @Test
     public void testGetLinks4(){
         try{
-            assertEquals(MarkdownParse.getLinks(Files.readString(Path.of("test-file4.md"))), List.of());
+            assertEquals(MarkdownParse.getLinks(Files.readString(Path.of("test-file4.md"))), List.of("link.com"));
         }catch(Exception e){} 
     }
 
