@@ -15,12 +15,19 @@ public class MarkdownParseTest {
     
     @Test
     public void testGetLinksTestFile4() throws IOException{
-        Path fileName = Path.of("/Users/emilychen/Documents/GitHub/markdown-parser-1/test-file4.md");
-        String content = Files.readString(fileName);
-        ArrayList<String> links = MarkdownParse.getLinks(content);
-        String[] expected = {};
-        assertArrayEquals(expected, links.toArray());
-    }
+        try {
+            
+            Path fileName = Path.of("test-file.md");
+            String content = Files.readString(fileName);
+            ArrayList<String> links = MarkdownParse.getLinks(content);
+            String[] expected = {};
+            assertArrayEquals(expected, links.toArray());
+        } catch (IOException e) {
+            System.out.println("File Not Found");
+        }
+        }
+        
+    
 
     @Test
     public void testGetLinks1(){
@@ -40,7 +47,10 @@ public class MarkdownParseTest {
     public void testGetLinks3(){
         try{
             assertEquals(MarkdownParse.getLinks(Files.readString(Path.of("test-file3.md"))), List.of("more text here"));
-        }catch(Exception e){} 
+            System.out.println("true");
+        }catch(Exception e){
+            System.out.println("there's an error");
+        } 
     }
 
     @Test
